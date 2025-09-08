@@ -1,10 +1,22 @@
 @import "tailwindcss";
 
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
 input {
     border: 2px solid #000;
     border-radius: 5px;
     padding: 8px;
     outline: #000;
+}
+
+button {
+    cursor: pointer;
+}
+
+button:hover {
+    transition: all 0.3s ease-in-out;
 }
 
 .submit-button {
