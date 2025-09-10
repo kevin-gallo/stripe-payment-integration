@@ -6,7 +6,7 @@ export const products: Product[] = [
       name: 'Nike Air Max 270',
       description: 'Lightweight and stylish sneakers perfect for running and casual wear.',
       company: 'Nike',
-      price: 150,
+      price: 1,
       image: '/images/nike-air-max.png',
     },
     {
@@ -14,7 +14,7 @@ export const products: Product[] = [
       name: 'Rolex Submariner',
       description: 'Luxury diving watch with iconic design and high precision.',
       company: 'Rolex',
-      price: 8500,
+      price: 2,
       image: '/images/rolex-submariner.jpeg',
     },
     {
@@ -22,7 +22,7 @@ export const products: Product[] = [
       name: 'Adidas Dri-Fit Shirt',
       description: 'Breathable and sweat-wicking training shirt for athletes.',
       company: 'Adidas',
-      price: 45,
+      price: 3,
       image: '/images/adidas-drifit.jpeg',
     },
     {
@@ -30,7 +30,7 @@ export const products: Product[] = [
       name: 'North Face Windbreaker Jacket',
       description: 'Durable windproof and waterproof jacket for outdoor adventures.',
       company: 'The North Face',
-      price: 120,
+      price: 4,
       image: '/images/jacket.jpeg',
     },
     {
@@ -38,7 +38,7 @@ export const products: Product[] = [
       name: 'Levi’s 511 Slim Fit Jeans',
       description: 'Comfortable and versatile slim-fit pants from Levi’s.',
       company: 'Levi’s',
-      price: 60,
+      price: 5,
       image: '/images/jeans.jpg',
     },
     {
@@ -46,7 +46,7 @@ export const products: Product[] = [
       name: 'New Era NY Yankees Cap',
       description: 'Classic fitted baseball cap representing the New York Yankees.',
       company: 'New Era',
-      price: 35,
+      price: 6,
       image: '/images/cap.jpg',
     },
     {
@@ -54,7 +54,7 @@ export const products: Product[] = [
       name: 'Puma Gym Duffel Bag',
       description: 'Spacious and lightweight bag for gym and travel.',
       company: 'Puma',
-      price: 55,
+      price: 7,
       image: '/images/bag.jpeg',
     },
     {
@@ -62,7 +62,7 @@ export const products: Product[] = [
       name: 'Oakley Radar Sunglasses',
       description: 'High-performance sunglasses with a sporty wraparound style.',
       company: 'Oakley',
-      price: 180,
+      price: 8,
       image: '/images/glasses.jpeg',
     },
   ];
