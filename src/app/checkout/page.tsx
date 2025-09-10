@@ -4,10 +4,11 @@ import { useState, useEffect } from 'react';
 import { Home } from 'lucide-react';
 import Link from 'next/link';
 import { products } from '../data/data';
+import { Loading } from '../components/Loading';
 
 const Checkout = () => {
-
     const [cartProducts, setCartProducts] = useState<typeof products>([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const storedCart = JSON.parse(localStorage.getItem('cart') || '[]');
@@ -19,9 +20,31 @@ const Checkout = () => {
 
             setCartProducts(filteredProducts);
         }
+
+        setLoading(false);
+
     }, []);
 
-    console.log(cartProducts);
+    if(loading) {
+        return <Loading />;
+    }
+
+    const handleCheckout = async () => {
+        const res = await fetch('/api/checkout_sessions', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ cartItems: cartProducts })
+        })
+
+        const data = await res.json();
+        if(data.url) {
+            window.location.href = data.url;
+        } else {
+            console.error(data.error);
+        }
+    }
 
     return (
         <div>
@@ -33,11 +56,11 @@ const Checkout = () => {
                 </div>
                 <h1 className='text-5xl font-semibold text-center my-6'>Checkout</h1>
             </div>
-            <div className='flex items-center justify-center'>
+            <div className='flex items-center justify-center px-10'>
                 {
                     cartProducts.length !== 0  ? ( 
                         <div className='flex items-start justify-center gap-10'>
-                            <div>
+                            <div className='flex flex-col gap-4'>
                                 {
                                     cartProducts.length !== 0 ? (
                                         cartProducts.map((product) => (
@@ -62,17 +85,20 @@ const Checkout = () => {
                             </div>
                             <div className='p-6 border border-gray-300 rounded'>
                                 <h2 className='text-2xl mb-2 font-semibold'>Review your cart</h2>
-                                <p>Sub-total: ${cartProducts.reduce((total, product) => total + product.price, 0)}</p>
-                                <p>Quantity: {cartProducts.length}</p>
-                                <p>Discount: 0</p>
-                                <p className='text-3xl font-bold'>
-                                    ${cartProducts.reduce((total, product) => total + product.price, 0)}
+                                <p><strong>Sub-total</strong>: ${cartProducts.reduce((total, product) => total + product.price, 0)}</p>
+                                <p><strong>Quantity</strong>: {cartProducts.length}</p>
+                                <p><strong>Discount</strong>: 0</p>
+                                <p className='text-3xl font-bold mt-4'>
+                                    <strong>Total</strong>: ${cartProducts.reduce((total, product) => total + product.price, 0)}
                                 </p>
-                                <button className='mt-4 text-white px-4 py-2 rounded bg-indigo-500 hover:bg-indigo-600'>Pay Now</button>
+                                <button 
+                                    onClick={handleCheckout}
+                                    className='mt-4 text-white px-4 py-2 rounded bg-indigo-500 hover:bg-indigo-600'
+                                >Pay Now</button>
                             </div>
                         </div>
                     ) : (
-                        <p className='text-center text-2xl'>No items in the cart</p>
+                        <p className='text-center text-xl font-semibold text-indigo-500'>No items in the cart</p>
                     )
                 }
             </div>

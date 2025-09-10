@@ -5,9 +5,12 @@ import Link from 'next/link';
 import { products } from './data/data';
 import { ShoppingCart } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import { Loading } from './components/Loading';
 
 export default function Home() {
   const [cart, setCart] = useState<number[]>([]);
+  const [loading, setLoading] = useState(true);
+
   const handleAddToCart = (productId: number) => {
     const existingCart = JSON.parse(localStorage.getItem('cart') || '[]');
 
@@ -22,7 +25,12 @@ export default function Home() {
   useEffect(() => {
     const cart = JSON.parse(localStorage.getItem('cart') || '[]');
     setCart(cart);
+    setLoading(false);
   }, []);
+
+  if(loading) {
+    return <Loading />;
+  }
 
   return (
     <div className='px-12'>
