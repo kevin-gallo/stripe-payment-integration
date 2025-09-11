@@ -23,6 +23,7 @@ export async function GET(req: NextRequest) {
         return NextResponse.json(session);
 
     } catch (error) {
+        console.log('Error retrieving session:', error);
         return NextResponse.json({
             error: 'Failed to retrieve session',
             status: 500

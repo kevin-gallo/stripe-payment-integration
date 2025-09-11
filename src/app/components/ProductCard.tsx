@@ -4,6 +4,7 @@ import Image from "next/image"
 import { ProductCardProps } from "../types/types"
 
 export const ProductCard: React.FC<ProductCardProps> = ({ products, cart, handleAddToCart }) => {
+    console.log('cart in ProductCard:', cart);
     return (
         <>
             {
